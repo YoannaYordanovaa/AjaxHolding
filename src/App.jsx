@@ -243,7 +243,7 @@ function HeroAndServices({ isMobile, onSvcClick }) {
 
         {!isMobile && (
           <div style={{ display:"flex", gap:"2rem", alignItems:"center" }}>
-            {[["about","За нас"],["services","Услуги"],["projects","Проекти"],["contact","Контакти"]].map(([id, label]) => (
+            {[["about","За нас"],["services","Услуги"],["projects","Проекти"]].map(([id, label]) => (
               <button key={id}
                 onClick={() => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" })}
                 style={{ background:"none", border:"none", fontFamily:"var(--sans)", fontSize:"0.63rem", letterSpacing:"0.22em", color:"rgba(255,255,255,0.7)", cursor:"pointer", textTransform:"uppercase", transition:"color 0.3s" }}
@@ -257,7 +257,7 @@ function HeroAndServices({ isMobile, onSvcClick }) {
               style={{ background:"var(--gold)", border:"none", color:"#fff", padding:"0.6rem 1.4rem", fontFamily:"var(--sans)", fontSize:"0.62rem", letterSpacing:"0.2em", textTransform:"uppercase", cursor:"pointer", transition:"background 0.3s" }}
               onMouseEnter={e => e.currentTarget.style.background="#c8a84e"}
               onMouseLeave={e => e.currentTarget.style.background="var(--gold)"}>
-              Запитване
+              Контакти
             </button>
           </div>
         )}
