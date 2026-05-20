@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import logoSrc from "/src/assets/logo.png";
 
 // ─── IMAGES — замени с реални пътища ──────────────────────────────────────────
 const HERO_BG = "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85";
@@ -234,7 +235,7 @@ function HeroAndServices({ isMobile, onSvcClick }) {
       }}>
         <button onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}
           style={{ background:"none", border:"none", cursor:"pointer", padding:0 }}>
-          <img src="/src/assets/logo.png" alt="Аякс Холдинг"
+          <img src={logoSrc} alt="Аякс Холдинг"
             style={{ height: isMobile ? 34 : 42, objectFit:"contain",
               // Лого е тъмно — добавяме светъл shadow за четимост
               filter:"drop-shadow(0 1px 8px rgba(0,0,0,0.5))" }} />
@@ -907,7 +908,7 @@ function ContactsSection({ isMobile }) {
 function Footer({ isMobile }) {
   return (
     <footer style={{ background:"#141210", borderTop:"1px solid rgba(255,255,255,0.06)", padding: isMobile ? "1.5rem" : "2rem 3.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1rem" }}>
-      <img src="/src/assets/logo.png" alt="Аякс Холдинг" style={{ height:28, objectFit:"contain", opacity:0.35, filter:"brightness(10)" }} />
+      <img src={logoSrc} alt="Аякс Холдинг" style={{ height:28, objectFit:"contain", opacity:0.35, filter:"brightness(10)" }} />
       <p style={{ fontFamily:"var(--sans)", fontSize:"0.56rem", letterSpacing:"0.15em", color:"rgba(255,255,255,0.2)" }}>
         © 1990 – {new Date().getFullYear()} АЯКС ХОЛДИНГ · ВСИЧКИ ПРАВА ЗАПАЗЕНИ
       </p>
