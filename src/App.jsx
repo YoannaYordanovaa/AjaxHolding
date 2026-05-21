@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import logoSrc from "/src/assets/logo.png";
 
+
 // ─── IMAGES — замени с реални пътища ──────────────────────────────────────────
 const HERO_BG =
   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85";
@@ -294,24 +295,35 @@ function ServiceModal({ svc, img, onClose, isMobile }) {
           boxShadow: "0 32px 80px rgba(0,0,0,0.2)",
         }}
       >
-        {isMobile && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              padding: "0.8rem 0 0.2rem",
-            }}
-          >
-            <div
+        {/* Sticky хедър с бутон за затваряне */}
+        <div style={{
+          position: "sticky", top: 0, zIndex: 10,
+          background: "rgba(250,247,242,0.95)",
+          backdropFilter: "blur(4px)",
+          borderBottom: "1px solid var(--border)",
+        }}>
+          {isMobile && (
+            <div style={{ display: "flex", justifyContent: "center", padding: "0.8rem 0 0.2rem" }}>
+              <div style={{ width: 36, height: 4, background: "#ddd6c8", borderRadius: 2 }} />
+            </div>
+          )}
+          <div style={{ display: "flex", justifyContent: "flex-end", padding: isMobile ? "0.5rem 1.25rem 0.75rem" : "0.75rem 1.25rem" }}>
+            <button
+              onClick={close}
               style={{
-                width: 36,
-                height: 4,
-                background: "#ddd6c8",
-                borderRadius: 2,
+                background: "none", border: "1px solid var(--border)",
+                width: 36, height: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                cursor: "pointer", color: "#5a5248", fontSize: "0.85rem",
+                transition: "border-color 0.2s, color 0.2s",
               }}
-            />
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "#5a5248"; }}
+            >
+              ✕
+            </button>
           </div>
-        )}
+        </div>
 
         {/* Image */}
         <div
@@ -329,30 +341,6 @@ function ServiceModal({ svc, img, onClose, isMobile }) {
                 "linear-gradient(to top, #faf7f2 0%, transparent 55%)",
             }}
           />
-          <button
-            onClick={close}
-            style={{
-              position: "absolute",
-              top: "1.25rem",
-              right: "1.25rem",
-              background: "rgba(250,247,242,0.9)",
-              border: "none",
-              width: 36,
-              height: 36,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              color: "#5a5248",
-              fontSize: "0.85rem",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#faf7f2")}
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "rgba(250,247,242,0.9)")
-            }
-          >
-            ✕
-          </button>
         </div>
 
         <div
