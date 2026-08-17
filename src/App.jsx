@@ -958,7 +958,7 @@ function HeroAndServices({ isMobile, onSvcClick }) {
             textShadow: "0 1px 8px rgba(0,0,0,0.4)",
           }}
         >
-          „С професионализъм можем да се справим с всеки един проект."
+          „С професионализъм се справяме с всеки един проект."
         </p>
 
         {/* Stats */}
