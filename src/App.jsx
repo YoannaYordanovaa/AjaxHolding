@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import logoSrc from "/src/assets/logo.png";
 import heroSrc from "/src/assets/hero.jpeg";
 import furnitureSrc from "/src/assets/furniture.png";
+import finishingSrc from "/src/assets/finishing_works.jpeg";
 import projectManagementSrc from "/src/assets/Project_management.jpeg";
 import logisticsSrc from "/src/assets/logistics.jpeg";
 
@@ -10,7 +11,7 @@ const HERO_BG = heroSrc;
 
 const SVC_IMAGES = [
   projectManagementSrc,
-  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
+  finishingSrc,
   "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
   logisticsSrc,
   furnitureSrc,
