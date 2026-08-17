@@ -1,17 +1,19 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import logoSrc from "/src/assets/logo.png";
-import heroSrc from "/src/assets/hero.png";
-
+import heroSrc from "/src/assets/hero.jpeg";
+import furnitureSrc from "/src/assets/furniture.png";
+import projectManagementSrc from "/src/assets/Project_management.jpeg";
+import logisticsSrc from "/src/assets/logistics.jpeg";
 
 // ─── IMAGES — замени с реални пътища ──────────────────────────────────────────
 const HERO_BG = heroSrc;
 
 const SVC_IMAGES = [
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+  projectManagementSrc,
   "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80",
-  "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80 ",
+  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+  logisticsSrc,
+  furnitureSrc,
 ];
 
 const PROJ_IMAGES = [
@@ -27,7 +29,6 @@ const PROJ_IMAGES = [
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
-
   {
     id: "management",
     num: "01",
@@ -56,11 +57,7 @@ const SERVICES = [
     statLabel: "до финиш",
     description:
       "Екипът ни е изграден от специалисти в различни области. Предлагаме пълен затворен кръг от услуги за интериор и екстериор.",
-    items: [
-      "ВиК, ОВК и електро",
-      "Сухо строителство",
-      "Настилки и облицовки",
-    ],
+    items: ["ВиК, ОВК и електро", "Сухо строителство", "Настилки и облицовки"],
     detail: `Предимството на добре сработен екип дава по-добра организация и спестяване на средства.`,
   },
   {
@@ -81,7 +78,7 @@ const SERVICES = [
     ],
     detail: `Свържете се с нас за безплатна консултация и индивидуална оферта.`,
   },
-    {
+  {
     id: "objects",
     num: "04",
     title: "Логистика",
@@ -109,12 +106,7 @@ const SERVICES = [
     statLabel: "по поръчка",
     description:
       "Ние трансформираме личните пространства в уникални и стилни домове, предоставяйки специализирани дизайнерски решения, които отразяват вкусовете и нуждите на всяко домакинство.",
-    items: [
-      "Проектиране",
-      "Доставка на материали",
-      "Изработване",
-      "Монтаж",
-    ],
+    items: ["Проектиране", "Доставка на материали", "Изработване", "Монтаж"],
     detail: `Всяко лично пространство може да бъде израз на личния стил, да осигурява комфорт и да бъде неповторимо.`,
   },
 ];
@@ -350,29 +342,64 @@ function ServiceModal({ svc, img, onClose, isMobile }) {
         }}
       >
         {/* Sticky хедър с бутон за затваряне */}
-        <div style={{
-          position: "sticky", top: 0, zIndex: 10,
-          background: "rgba(250,247,242,0.95)",
-          backdropFilter: "blur(4px)",
-          borderBottom: "1px solid var(--border)",
-        }}>
+        <div
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+            background: "rgba(250,247,242,0.95)",
+            backdropFilter: "blur(4px)",
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
           {isMobile && (
-            <div style={{ display: "flex", justifyContent: "center", padding: "0.8rem 0 0.2rem" }}>
-              <div style={{ width: 36, height: 4, background: "#ddd6c8", borderRadius: 2 }} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "0.8rem 0 0.2rem",
+              }}
+            >
+              <div
+                style={{
+                  width: 36,
+                  height: 4,
+                  background: "#ddd6c8",
+                  borderRadius: 2,
+                }}
+              />
             </div>
           )}
-          <div style={{ display: "flex", justifyContent: "flex-end", padding: isMobile ? "0.5rem 1.25rem 0.75rem" : "0.75rem 1.25rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              padding: isMobile ? "0.5rem 1.25rem 0.75rem" : "0.75rem 1.25rem",
+            }}
+          >
             <button
               onClick={close}
               style={{
-                background: "none", border: "1px solid var(--border)",
-                width: 36, height: 36,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", color: "#5a5248", fontSize: "0.85rem",
+                background: "none",
+                border: "1px solid var(--border)",
+                width: 36,
+                height: 36,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                color: "#5a5248",
+                fontSize: "0.85rem",
                 transition: "border-color 0.2s, color 0.2s",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--gold)"; e.currentTarget.style.color = "var(--gold)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "#5a5248"; }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--gold)";
+                e.currentTarget.style.color = "var(--gold)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "#5a5248";
+              }}
             >
               ✕
             </button>
@@ -620,54 +647,91 @@ function MobileMenu() {
 
   const navigate = (id) => {
     setOpen(false);
-    setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" }), 50);
+    setTimeout(
+      () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }),
+      50,
+    );
   };
 
   return (
     <>
       <button
-        onClick={() => setOpen(o => !o)}
-        style={{ background:"none", border:"none", cursor:"pointer", padding:"0.4rem", display:"flex", flexDirection:"column", gap:"5px", zIndex:20 }}
+        onClick={() => setOpen((o) => !o)}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          padding: "0.4rem",
+          display: "flex",
+          flexDirection: "column",
+          gap: "5px",
+          zIndex: 20,
+        }}
       >
-        {[0,1,2].map(i => (
-          <span key={i} style={{
-            display:"block", width:24, height:2, background:"#fff",
-            transition:"all 0.3s ease",
-            transform: open
-              ? i===0 ? "translateY(7px) rotate(45deg)"
-              : i===1 ? "scaleX(0)"
-              : "translateY(-7px) rotate(-45deg)"
-              : "none",
-            opacity: open && i===1 ? 0 : 1,
-          }} />
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            style={{
+              display: "block",
+              width: 24,
+              height: 2,
+              background: "#fff",
+              transition: "all 0.3s ease",
+              transform: open
+                ? i === 0
+                  ? "translateY(7px) rotate(45deg)"
+                  : i === 1
+                    ? "scaleX(0)"
+                    : "translateY(-7px) rotate(-45deg)"
+                : "none",
+              opacity: open && i === 1 ? 0 : 1,
+            }}
+          />
         ))}
       </button>
 
-      <div style={{
-        position:"fixed", inset:0, zIndex:15,
-        background:"rgba(14,11,7,0.97)",
-        display:"flex", flexDirection:"column",
-        alignItems:"center", justifyContent:"center",
-        opacity: open ? 1 : 0,
-        pointerEvents: open ? "auto" : "none",
-        transition:"opacity 0.35s ease",
-      }}>
-        {[["about","За нас"],["services","Услуги"],["projects","Проекти"],["contact","Контакти"]].map(([id, label], i) => (
-          <button key={id} onClick={() => navigate(id)}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 15,
+          background: "rgba(14,11,7,0.97)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          transition: "opacity 0.35s ease",
+        }}
+      >
+        {[
+          ["about", "За нас"],
+          ["services", "Услуги"],
+          ["projects", "Проекти"],
+          ["contact", "Контакти"],
+        ].map(([id, label], i) => (
+          <button
+            key={id}
+            onClick={() => navigate(id)}
             style={{
-              background:"none", border:"none",
-              fontFamily:"var(--serif)",
-              fontSize:"clamp(1.8rem,8vw,2.5rem)",
-              color:"rgba(255,255,255,0.85)",
-              cursor:"pointer", padding:"0.9rem 2rem",
+              background: "none",
+              border: "none",
+              fontFamily: "var(--serif)",
+              fontSize: "clamp(1.8rem,8vw,2.5rem)",
+              color: "rgba(255,255,255,0.85)",
+              cursor: "pointer",
+              padding: "0.9rem 2rem",
               opacity: open ? 1 : 0,
               transform: open ? "translateY(0)" : "translateY(12px)",
               transitionDelay: open ? `${i * 0.06}s` : "0s",
-              transitionProperty:"opacity, transform, color",
-              transitionDuration:"0.4s",
+              transitionProperty: "opacity, transform, color",
+              transitionDuration: "0.4s",
             }}
-            onMouseEnter={e => e.currentTarget.style.color="var(--gold)"}
-            onMouseLeave={e => e.currentTarget.style.color="rgba(255,255,255,0.85)"}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.color = "rgba(255,255,255,0.85)")
+            }
           >
             {label}
           </button>
@@ -1410,14 +1474,15 @@ function AboutSection({ isMobile }) {
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
           minHeight: isMobile ? "auto" : "520px",
-          
         }}
       >
         {/* Текст */}
         <div
           ref={ref1}
           style={{
-              padding: isMobile ? "3.5rem 1.5rem" : "6rem 5rem 6rem calc((100vw - 1400px) / 2 + 3.5rem)",
+            padding: isMobile
+              ? "3.5rem 1.5rem"
+              : "6rem 5rem 6rem calc((100vw - 1400px) / 2 + 3.5rem)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -1477,7 +1542,8 @@ function AboutSection({ isMobile }) {
             }}
           >
             Компанията е създадена през 1990 г. — едно от първите частни
-            дружества в страната. С разнообразен опит в различни области, сме се специализирали в строителството и ремонтните дейности.
+            дружества в страната. С разнообразен опит в различни области, сме се
+            специализирали в строителството и ремонтните дейности.
           </p>
 
           <p
@@ -1499,8 +1565,7 @@ function AboutSection({ isMobile }) {
         {/* Снимка */}
         <div
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=85')",
+            backgroundImage: `url(${new URL('./assets/Main.jpeg', import.meta.url).href})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             minHeight: isMobile ? "52vw" : "auto",
@@ -1712,7 +1777,8 @@ function ProjectsSection({ isMobile }) {
   );
 
   const p = PROJECTS[active];
-  const gallery = p.images && p.images.length ? p.images : [PROJ_IMAGES[active]];
+  const gallery =
+    p.images && p.images.length ? p.images : [PROJ_IMAGES[active]];
   const img = gallery[imgIdx] || gallery[0];
 
   return (
@@ -1928,9 +1994,7 @@ function ProjectsSection({ isMobile }) {
                   />
                   <button
                     aria-label="Следваща снимка"
-                    onClick={() =>
-                      setImgIdx((i) => (i + 1) % gallery.length)
-                    }
+                    onClick={() => setImgIdx((i) => (i + 1) % gallery.length)}
                     style={{
                       position: "absolute",
                       right: 0,
