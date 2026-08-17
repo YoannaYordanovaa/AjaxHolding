@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import logoSrc from "/src/assets/logo.png";
+import heroSrc from "/src/assets/hero.jpeg";
 
 
 // ─── IMAGES — замени с реални пътища ──────────────────────────────────────────
-const HERO_BG =
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=85";
+const HERO_BG = heroSrc;
 
 const SVC_IMAGES = [
   "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
@@ -26,27 +26,10 @@ const PROJ_IMAGES = [
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
-  {
-    id: "objects",
-    num: "01",
-    title: "Завършени обекти",
-    subtitle: "Собствена инвестиция",
-    short: "Хотели, резиденции и търговски сгради",
-    stat: "100+",
-    statLabel: "обекта",
-    description:
-      "През последните 30 години сме изградили множество сгради с най-разнообразно предназначение и сложност. Развивали сме дейността си в България и чужбина.",
-    items: [
-      "Хотели и резиденции",
-      "Жилищни сгради",
-      "Търговски центрове",
-      "Ваканционни комплекси",
-    ],
-    detail: `Обект: „Хотел с резиденция, фитнес и басейн"\nул. Ангел Каралийчев 10, Витоша\n➤ ЗП 970 м²  ➤ РЗП над 3200 м²`,
-  },
+
   {
     id: "management",
-    num: "02",
+    num: "01",
     title: "Управление на проекти",
     subtitle: "Инвеститорски контрол",
     short: "От идея до въвеждане в експлоатация",
@@ -64,7 +47,7 @@ const SERVICES = [
   },
   {
     id: "renovation",
-    num: "03",
+    num: "02",
     title: "Довършителни дейности",
     subtitle: "Ремонтни работи",
     short: "Пълен кръг — ВиК, електро, настилки",
@@ -76,13 +59,12 @@ const SERVICES = [
       "ВиК, ОВК и електро",
       "Сухо строителство",
       "Настилки и облицовки",
-      "Хидроизолации",
     ],
     detail: `Предимството на добре сработен екип дава по-добра организация и спестяване на средства.`,
   },
   {
     id: "custom",
-    num: "04",
+    num: "03",
     title: "Индивидуални решения",
     subtitle: "По Ваша мярка",
     short: "Персонален подход за всеки проект",
@@ -98,6 +80,24 @@ const SERVICES = [
     ],
     detail: `Свържете се с нас за безплатна консултация и индивидуална оферта.`,
   },
+    {
+    id: "objects",
+    num: "04",
+    title: "Логистика",
+    subtitle: "Доставка и снабдяване",
+    short: "Транспорт, складиране и снабдяване с материали",
+    stat: "24/7",
+    statLabel: "снабдяване",
+    description:
+      "Осигуряваме навременна доставка и складиране на строителни материали и оборудване, координирани с графика на всеки обект — без престои и излишни разходи.",
+    items: [
+      "Транспорт на материали",
+      "Складово стопанство",
+      "Снабдяване с оборудване",
+      "Координация с обекти",
+    ],
+    detail: `Собствен автопарк и складова база, които гарантират точни срокове на доставка и непрекъснат работен процес на всеки обект.`,
+  },
 ];
 
 const PROJECTS = [
@@ -108,12 +108,17 @@ const PROJECTS = [
     title: "Хотел с резиденция",
     sub: "Витоша · Симеоново",
     cat: "Жилищно строителство",
-    area: "3 200+ м²",
     desc: "Хотел с резиденция, фитнес и басейн в подножието на Витоша.",
     specs: [
       { l: "ЗП", v: "970 м²" },
       { l: "РЗП", v: "3 200+ м²" },
       { l: "Етажи", v: "6" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
     ],
   },
   {
@@ -123,12 +128,17 @@ const PROJECTS = [
     title: "Търговски и офис център",
     sub: "София · България",
     cat: "Търговски обект",
-    area: "2 800 м²",
     desc: "Многофункционален комплекс с търговски площи и офис пространства.",
     specs: [
       { l: "РЗП", v: "2 800 м²" },
       { l: "Търговия", v: "1 200 м²" },
       { l: "Офиси", v: "1 600 м²" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
     ],
   },
   {
@@ -138,12 +148,17 @@ const PROJECTS = [
     title: "Жилищна сграда",
     sub: "Лозенец · София",
     cat: "Жилищно строителство",
-    area: "4 100 м²",
     desc: "Луксозна жилищна сграда с апартаменти, подземен гараж и озеленени пространства.",
     specs: [
       { l: "РЗП", v: "4 100 м²" },
       { l: "Апартаменти", v: "28" },
       { l: "Гаражи", v: "34" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
     ],
   },
   {
@@ -153,12 +168,17 @@ const PROJECTS = [
     title: "Ваканционен комплекс",
     sub: "Банско · Пирин",
     cat: "Ваканционен имот",
-    area: "1 800 м²",
     desc: "Ваканционен комплекс в полите на Пирин с природосъобразна архитектура.",
     specs: [
       { l: "РЗП", v: "1 800 м²" },
       { l: "Апартаменти", v: "16" },
       { l: "Год.", v: "2012" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
     ],
   },
   {
@@ -168,12 +188,17 @@ const PROJECTS = [
     title: "Историческа реновация",
     sub: "Стар град · София",
     cat: "Реновация",
-    area: "950 м²",
     desc: "Цялостна реновация на историческа сграда от XX век.",
     specs: [
       { l: "РЗП", v: "950 м²" },
       { l: "Строена", v: "1920" },
       { l: "Реновация", v: "2010" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
     ],
   },
   {
@@ -183,12 +208,17 @@ const PROJECTS = [
     title: "Логистичен център",
     sub: "Бизнес парк · София",
     cat: "Промишлено",
-    area: "8 500 м²",
     desc: "Съвременен логистичен и дистрибуционен център с офис блок.",
     specs: [
       { l: "РЗП", v: "8 500 м²" },
       { l: "Склад", v: "7 200 м²" },
       { l: "Офиси", v: "1 300 м²" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
+      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
     ],
   },
   {
@@ -198,12 +228,17 @@ const PROJECTS = [
     title: "Бутиков хотел",
     sub: "Боровец · Рила",
     cat: "Хотелиерство",
-    area: "2 200 м²",
     desc: "Планински хотел с ресторант, СПА и конферентна зала.",
     specs: [
       { l: "РЗП", v: "2 200 м²" },
       { l: "Стаи", v: "42" },
       { l: "СПА", v: "400 м²" },
+    ],
+    images: [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
     ],
   },
 ];
@@ -822,7 +857,7 @@ function HeroAndServices({ isMobile, onSvcClick }) {
             objectFit: "contain",
             marginBottom: isMobile ? "0.75rem" : "1rem",
             filter:
-              "drop-shadow(0 2px 20px rgba(0,0,0,0.9)) drop-shadow(0 0 60px rgba(0,0,0,0.7))",
+              " drop-shadow(0 2px 20px rgba(0,0,0,0.9)) drop-shadow(0 0 60px rgba(0,0,0,0.7))",
             alignSelf: "flex-start",
           }}
         />
@@ -1423,9 +1458,7 @@ function AboutSection({ isMobile }) {
             }}
           >
             Компанията е създадена през 1990 г. — едно от първите частни
-            дружества в страната. Преминавайки през различни сфери на дейност и
-            придобивайки опит, сме се усъвършенствали в строителството и
-            ремонтните дейности.
+            дружества в страната. С разнообразен опит в различни области, сме се специализирали в строителството и ремонтните дейности.
           </p>
 
           <p
@@ -1593,11 +1626,56 @@ function AboutSection({ isMobile }) {
 
 // ─── PROJECTS ─────────────────────────────────────────────────────────────────
 
+function GalleryThumbs({ images, activeIdx, onSelect, isMobile }) {
+  if (!images || images.length < 2) return null;
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "0.5rem",
+        marginTop: isMobile ? "0.75rem" : "1rem",
+      }}
+    >
+      {images.map((src, i) => (
+        <button
+          key={i}
+          onClick={() => onSelect(i)}
+          aria-label={`Снимка ${i + 1}`}
+          style={{
+            width: isMobile ? 46 : 60,
+            height: isMobile ? 46 : 60,
+            padding: 0,
+            flexShrink: 0,
+            border:
+              i === activeIdx
+                ? "2px solid var(--gold)"
+                : "1px solid var(--border)",
+            backgroundImage: `url(${src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            cursor: "pointer",
+            opacity: i === activeIdx ? 1 : 0.5,
+            transition: "opacity 0.25s, border-color 0.25s",
+          }}
+          onMouseEnter={(e) => {
+            if (i !== activeIdx) e.currentTarget.style.opacity = "0.8";
+          }}
+          onMouseLeave={(e) => {
+            if (i !== activeIdx) e.currentTarget.style.opacity = "0.5";
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function ProjectsSection({ isMobile }) {
   const [active, setActive] = useState(0);
   const [dir, setDir] = useState(1);
   const [animating, setAnimating] = useState(false);
+  const [imgIdx, setImgIdx] = useState(0);
   const touchX = useRef(null);
+  const imgTouchX = useRef(null);
   const [hRef, hVis] = useInView();
 
   const goTo = useCallback(
@@ -1607,6 +1685,7 @@ function ProjectsSection({ isMobile }) {
       setAnimating(true);
       setTimeout(() => {
         setActive(idx);
+        setImgIdx(0);
         setAnimating(false);
       }, 420);
     },
@@ -1614,7 +1693,8 @@ function ProjectsSection({ isMobile }) {
   );
 
   const p = PROJECTS[active];
-  const img = PROJ_IMAGES[active];
+  const gallery = p.images && p.images.length ? p.images : [PROJ_IMAGES[active]];
+  const img = gallery[imgIdx] || gallery[0];
 
   return (
     <section
@@ -1682,73 +1762,73 @@ function ProjectsSection({ isMobile }) {
               Завършени проекти
             </h2>
           </div>
-          {!isMobile && (
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              {["←", "→"].map((a, i) => (
-                <button
-                  key={a}
-                  onClick={() =>
-                    goTo(
-                      i === 0
-                        ? active > 0
-                          ? active - 1
-                          : PROJECTS.length - 1
-                        : active < PROJECTS.length - 1
-                          ? active + 1
-                          : 0,
-                    )
-                  }
-                  style={{
-                    background: "none",
-                    border: "1px solid var(--border)",
-                    width: 44,
-                    height: 44,
-                    color: "var(--muted)",
-                    fontSize: "1rem",
-                    cursor: "pointer",
-                    transition: "all 0.3s",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "var(--gold)";
-                    e.currentTarget.style.color = "var(--gold)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "var(--border)";
-                    e.currentTarget.style.color = "var(--muted)";
-                  }}
-                >
-                  {a}
-                </button>
-              ))}
-            </div>
-          )}
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            {["←", "→"].map((a, i) => (
+              <button
+                key={a}
+                aria-label={i === 0 ? "Предишен проект" : "Следващ проект"}
+                onClick={() =>
+                  goTo(
+                    i === 0
+                      ? active > 0
+                        ? active - 1
+                        : PROJECTS.length - 1
+                      : active < PROJECTS.length - 1
+                        ? active + 1
+                        : 0,
+                  )
+                }
+                style={{
+                  background: "none",
+                  border: "1px solid var(--border)",
+                  width: isMobile ? 38 : 44,
+                  height: isMobile ? 38 : 44,
+                  color: "var(--muted)",
+                  fontSize: isMobile ? "0.85rem" : "1rem",
+                  cursor: "pointer",
+                  transition: "all 0.3s",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--gold)";
+                  e.currentTarget.style.color = "var(--gold)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.color = "var(--muted)";
+                }}
+              >
+                {a}
+              </button>
+            ))}
+          </div>
         </div>
 
         {isMobile ? (
-          <div
-            onTouchStart={(e) => {
-              touchX.current = e.touches[0].clientX;
-            }}
-            onTouchEnd={(e) => {
-              const d = touchX.current - e.changedTouches[0].clientX;
-              if (Math.abs(d) > 40)
-                goTo(
-                  d > 0
-                    ? active < PROJECTS.length - 1
-                      ? active + 1
-                      : 0
-                    : active > 0
-                      ? active - 1
-                      : PROJECTS.length - 1,
-                );
-              touchX.current = null;
-            }}
-          >
+          <div>
+            {/* Снимка на проекта — swipe/tap за навигация между СНИМКИТЕ */}
             <div
               key={`mi-${active}`}
+              onTouchStart={(e) => {
+                imgTouchX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                if (imgTouchX.current === null || gallery.length < 2) {
+                  imgTouchX.current = null;
+                  return;
+                }
+                const d = imgTouchX.current - e.changedTouches[0].clientX;
+                if (Math.abs(d) > 30) {
+                  setImgIdx((i) =>
+                    d > 0
+                      ? (i + 1) % gallery.length
+                      : (i - 1 + gallery.length) % gallery.length,
+                  );
+                }
+                imgTouchX.current = null;
+              }}
               style={{
                 height: "56vw",
                 background: `url(${img}) center/cover`,
@@ -1758,14 +1838,39 @@ function ProjectsSection({ isMobile }) {
                 animation: "fadeIn 0.4s ease",
               }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to top, var(--cream) 0%, transparent 55%)",
-                }}
-              />
+              {gallery.length > 1 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "0.7rem",
+                    left: "0.75rem",
+                    right: "0.75rem",
+                    display: "flex",
+                    gap: "0.3rem",
+                    zIndex: 2,
+                  }}
+                >
+                  {gallery.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setImgIdx(i)}
+                      aria-label={`Снимка ${i + 1}`}
+                      style={{
+                        flex: 1,
+                        height: 3,
+                        background:
+                          i === imgIdx
+                            ? "var(--gold)"
+                            : "rgba(250,247,242,0.55)",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
+                        transition: "background 0.3s",
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
               <div
                 style={{
                   position: "absolute",
@@ -1781,124 +1886,183 @@ function ProjectsSection({ isMobile }) {
               >
                 {p.year}
               </div>
-              <div
+              {gallery.length > 1 && (
+                <>
+                  <button
+                    aria-label="Предишна снимка"
+                    onClick={() =>
+                      setImgIdx(
+                        (i) => (i - 1 + gallery.length) % gallery.length,
+                      )
+                    }
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: "38%",
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                    }}
+                  />
+                  <button
+                    aria-label="Следваща снимка"
+                    onClick={() =>
+                      setImgIdx((i) => (i + 1) % gallery.length)
+                    }
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: "38%",
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                    }}
+                  />
+                </>
+              )}
+            </div>
+            {/* Данни за проекта — swipe тук навигира между ПРОЕКТИТЕ */}
+            <div
+              onTouchStart={(e) => {
+                touchX.current = e.touches[0].clientX;
+              }}
+              onTouchEnd={(e) => {
+                if (touchX.current === null) return;
+                const d = touchX.current - e.changedTouches[0].clientX;
+                if (Math.abs(d) > 40)
+                  goTo(
+                    d > 0
+                      ? active < PROJECTS.length - 1
+                        ? active + 1
+                        : 0
+                      : active > 0
+                        ? active - 1
+                        : PROJECTS.length - 1,
+                  );
+                touchX.current = null;
+              }}
+            >
+              <p
                 style={{
-                  position: "absolute",
-                  bottom: "1rem",
-                  left: "1.25rem",
+                  fontFamily: "var(--sans)",
+                  fontSize: "0.6rem",
+                  letterSpacing: "0.2em",
+                  color: "var(--gold)",
+                  textTransform: "uppercase",
+                  marginBottom: "0.4rem",
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: "var(--sans)",
-                    fontSize: "0.55rem",
-                    letterSpacing: "0.2em",
-                    color: "var(--gold)",
-                    marginBottom: "0.2rem",
-                  }}
-                >
-                  {p.cat}
-                </p>
-                <h3
-                  style={{
-                    fontFamily: "var(--serif)",
-                    fontSize: "1.3rem",
-                    color: "var(--ink)",
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {p.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "var(--sans)",
-                    fontSize: "0.62rem",
-                    color: "var(--muted)",
-                    marginTop: "0.15rem",
-                  }}
-                >
-                  {p.sub}
-                </p>
+                {p.cat} · {p.year}
+              </p>
+              <h3
+                style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: "1.5rem",
+                  fontWeight: 400,
+                  color: "var(--ink)",
+                  lineHeight: 1.2,
+                  marginBottom: "0.3rem",
+                }}
+              >
+                {p.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "var(--sans)",
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.08em",
+                  color: "var(--gold)",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {p.sub}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  borderTop: "1px solid var(--border)",
+                  borderBottom: "1px solid var(--border)",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                {p.specs.map((s, i) => (
+                  <div
+                    key={s.l}
+                    style={{
+                      flex: 1,
+                      padding: "0.85rem 0.65rem",
+                      borderRight:
+                        i < p.specs.length - 1
+                          ? "1px solid var(--border)"
+                          : "none",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "var(--serif)",
+                        fontSize: "1.1rem",
+                        color: "var(--gold)",
+                      }}
+                    >
+                      {s.v}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--sans)",
+                        fontSize: "0.52rem",
+                        letterSpacing: "0.12em",
+                        color: "var(--muted)",
+                        textTransform: "uppercase",
+                        marginTop: "0.2rem",
+                      }}
+                    >
+                      {s.l}
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                borderTop: "1px solid var(--border)",
-                borderBottom: "1px solid var(--border)",
-                marginBottom: "1.25rem",
-              }}
-            >
-              {p.specs.map((s, i) => (
-                <div
-                  key={s.l}
-                  style={{
-                    flex: 1,
-                    padding: "0.85rem 0.65rem",
-                    borderRight:
-                      i < p.specs.length - 1
-                        ? "1px solid var(--border)"
-                        : "none",
-                  }}
-                >
-                  <div
+              <p
+                style={{
+                  fontFamily: "var(--serif)",
+                  fontSize: "0.92rem",
+                  color: "var(--muted)",
+                  lineHeight: 1.8,
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {p.desc}
+              </p>
+              <div style={{ display: "flex", gap: "0.4rem" }}>
+                {PROJECTS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
                     style={{
-                      fontFamily: "var(--serif)",
-                      fontSize: "1.1rem",
-                      color: "var(--gold)",
+                      width: i === active ? 22 : 5,
+                      height: 2,
+                      background:
+                        i === active ? "var(--gold)" : "var(--border)",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "width 0.4s, background 0.3s",
                     }}
-                  >
-                    {s.v}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--sans)",
-                      fontSize: "0.52rem",
-                      letterSpacing: "0.12em",
-                      color: "var(--muted)",
-                      textTransform: "uppercase",
-                      marginTop: "0.2rem",
-                    }}
-                  >
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <p
-              style={{
-                fontFamily: "var(--serif)",
-                fontSize: "0.92rem",
-                color: "var(--muted)",
-                lineHeight: 1.8,
-                marginBottom: "1.5rem",
-              }}
-            >
-              {p.desc}
-            </p>
-            <div style={{ display: "flex", gap: "0.4rem" }}>
-              {PROJECTS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  style={{
-                    width: i === active ? 22 : 5,
-                    height: 2,
-                    background: i === active ? "var(--gold)" : "var(--border)",
-                    border: "none",
-                    cursor: "pointer",
-                    padding: 0,
-                    transition: "width 0.4s, background 0.3s",
-                  }}
-                />
-              ))}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         ) : (
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gridTemplateColumns: "0.8fr 1.2fr",
               gap: "5rem",
               alignItems: "center",
             }}
@@ -1923,14 +2087,6 @@ function ProjectsSection({ isMobile }) {
                 <div
                   style={{
                     position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(to top, rgba(20,16,10,0.5) 0%, transparent 55%)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
                     top: "1.25rem",
                     right: "1.25rem",
                     background: "rgba(245,240,232,0.92)",
@@ -1942,23 +2098,6 @@ function ProjectsSection({ isMobile }) {
                   }}
                 >
                   {p.year}
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "1.25rem",
-                    left: "1.25rem",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: "var(--serif)",
-                      fontSize: "1.1rem",
-                      color: "rgba(245,240,232,0.9)",
-                    }}
-                  >
-                    {p.area}
-                  </p>
                 </div>
               </div>
               <div
@@ -1972,6 +2111,12 @@ function ProjectsSection({ isMobile }) {
                   zIndex: -1,
                   pointerEvents: "none",
                 }}
+              />
+              <GalleryThumbs
+                images={gallery}
+                activeIdx={imgIdx}
+                onSelect={setImgIdx}
+                isMobile={false}
               />
             </div>
             {/* Text */}
@@ -2153,6 +2298,47 @@ function ProjectsSection({ isMobile }) {
 
 // ─── CONTACTS — само телефон, имейл, соц. мрежи ───────────────────────────────
 
+// ─── ICONS — тънка линия, единен стил, наследява цвят от родителя ─────────────
+
+const ICON_PATHS = {
+  phone: (
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+  ),
+  email: (
+    <>
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22 6 12 13 2 6" />
+    </>
+  ),
+  facebook: (
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  ),
+  instagram: (
+    <>
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none" />
+    </>
+  ),
+};
+
+function Icon({ name, size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {ICON_PATHS[name]}
+    </svg>
+  );
+}
+
 function ContactsSection({ isMobile }) {
   const [ref, vis] = useInView();
 
@@ -2237,7 +2423,7 @@ function ContactsSection({ isMobile }) {
           <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {/* Телефон */}
             <a
-              href="tel:+35929999999"
+              href="tel:+359898775802"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -2260,11 +2446,10 @@ function ContactsSection({ isMobile }) {
                   alignItems: "center",
                   justifyContent: "center",
                   color: "var(--gold)",
-                  fontSize: "1rem",
                   flexShrink: 0,
                 }}
               >
-                ✆
+                <Icon name="phone" />
               </div>
               <div>
                 <p
@@ -2286,7 +2471,7 @@ function ContactsSection({ isMobile }) {
                     color: "#f5f0e8",
                   }}
                 >
-                  +359 2 XXX XXXX
+                  +359 898 775 802
                 </p>
               </div>
             </a>
@@ -2316,11 +2501,10 @@ function ContactsSection({ isMobile }) {
                   alignItems: "center",
                   justifyContent: "center",
                   color: "var(--gold)",
-                  fontSize: "1rem",
                   flexShrink: 0,
                 }}
               >
-                ✉
+                <Icon name="email" />
               </div>
               <div>
                 <p
@@ -2352,12 +2536,12 @@ function ContactsSection({ isMobile }) {
               {[
                 {
                   label: "Instagram",
-                  icon: "IG",
+                  icon: "instagram",
                   href: "https://instagram.com/ajaxholding",
                 },
                 {
                   label: "Facebook",
-                  icon: "FB",
+                  icon: "facebook",
                   href: "https://facebook.com/ajaxholding",
                 },
               ].map((soc) => (
@@ -2384,16 +2568,8 @@ function ContactsSection({ isMobile }) {
                     e.currentTarget.style.background = "transparent";
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--sans)",
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
-                      color: "var(--gold)",
-                      letterSpacing: "0.05em",
-                    }}
-                  >
-                    {soc.icon}
+                  <span style={{ color: "var(--gold)", display: "flex" }}>
+                    <Icon name={soc.icon} size={16} />
                   </span>
                   <span
                     style={{
