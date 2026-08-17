@@ -787,7 +787,8 @@ function HeroAndServices({ isMobile, onSvcClick }) {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(10,8,5,0.90) 0%, rgba(10,8,5,0.5) 50%, rgba(10,8,5,0.90) 100%)",
+            "linear-gradient(to bottom, rgba(10,8,5,0.95) 0%, rgba(10,8,5,0.25) 50%, rgba(10,8,5,0.95) 100%)"
+,
         }}
       />
 
