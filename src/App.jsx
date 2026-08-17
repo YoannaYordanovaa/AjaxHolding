@@ -2621,12 +2621,12 @@ function ContactsSection({ isMobile }) {
                 {
                   label: "Instagram",
                   icon: "instagram",
-                  href: "https://instagram.com/ajaxholding",
+                  href: "https://www.instagram.com/ajax.holding",
                 },
                 {
                   label: "Facebook",
                   icon: "facebook",
-                  href: "https://facebook.com/ajaxholding",
+                  href: "https://www.facebook.com/people/Ajax-Holding/pfbid0336pj3ZuYqaxkGjv2CGEpypvv7kxDKdWDuzm56pY9Twyrp4KE5qs5xgpY6ScT8qVAl/",
                 },
               ].map((soc) => (
                 <a
