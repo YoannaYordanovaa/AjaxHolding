@@ -27,6 +27,24 @@ const PROJ_IMAGES = [
   "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
 ];
 
+const projectImageModules = import.meta.glob(
+  "/src/assets/{Hotel_01,House_02,Hotel_03,House_04,Apartment_05}/*.{jpg,jpeg,JPG,JPEG,png,PNG}",
+  { eager: true, import: "default" },
+);
+
+function folderImages(folder) {
+  return Object.keys(projectImageModules)
+    .filter((path) => path.startsWith(`/src/assets/${folder}/`))
+    .sort()
+    .map((path) => projectImageModules[path]);
+}
+
+const HOTEL_01_IMAGES = folderImages("Hotel_01");
+const HOUSE_02_IMAGES = folderImages("House_02");
+const HOTEL_03_IMAGES = folderImages("Hotel_03");
+const HOUSE_04_IMAGES = folderImages("House_04");
+const APARTMENT_05_IMAGES = folderImages("Apartment_05");
+
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
@@ -117,7 +135,7 @@ const PROJECTS = [
     id: 1,
     num: "01",
     year: "2019",
-    title: "Хотел с резиденция",
+    title: "Хотел с резиденция, фитнес и басейн",
     sub: "Витоша · Симеоново",
     cat: "Жилищно строителство",
     desc: "Хотел с резиденция, фитнес и басейн в подножието на Витоша.",
@@ -126,132 +144,60 @@ const PROJECTS = [
       { l: "РЗП", v: "3 200+ м²" },
       { l: "Етажи", v: "6" },
     ],
-    images: [
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
-      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
-    ],
+    images: HOTEL_01_IMAGES,
   },
   {
     id: 2,
     num: "02",
-    year: "2016",
-    title: "Търговски и офис център",
-    sub: "София · България",
-    cat: "Търговски обект",
-    desc: "Многофункционален комплекс с търговски площи и офис пространства.",
+    year: "2010",
+    title: "Къща",
+    sub: "Полигироус · Гърция",
+    cat: "Многофамилна къща",
+    desc: "Многофамилна къща на 3 етажа",
     specs: [
-      { l: "РЗП", v: "2 800 м²" },
-      { l: "Търговия", v: "1 200 м²" },
-      { l: "Офиси", v: "1 600 м²" },
+      { l: "РЗП", v: "480 м²" },
+      { l: "ЗП", v: "240 м²" },
     ],
-    images: [
-      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-    ],
+    images: HOUSE_02_IMAGES,
   },
   {
     id: 3,
     num: "03",
-    year: "2014",
-    title: "Жилищна сграда",
-    sub: "Лозенец · София",
-    cat: "Жилищно строителство",
-    desc: "Луксозна жилищна сграда с апартаменти, подземен гараж и озеленени пространства.",
+    year: "2010",
+    title: "Хотел Близнаци",
+    sub: "Ормилия · Гърция",
+    cat: "Хотел",
+    desc: "Съвременен хотел с апартаменти за настаняване, паркинг и обширни озеленени зони.",
     specs: [
-      { l: "РЗП", v: "4 100 м²" },
-      { l: "Апартаменти", v: "28" },
-      { l: "Гаражи", v: "34" },
+      { l: "РЗП", v: "734 м²" },
+      { l: "ЗП", v: "460 м²" },
     ],
-    images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-    ],
+    images: HOTEL_03_IMAGES,
   },
   {
     id: 4,
     num: "04",
-    year: "2012",
-    title: "Ваканционен комплекс",
-    sub: "Банско · Пирин",
-    cat: "Ваканционен имот",
-    desc: "Ваканционен комплекс в полите на Пирин с природосъобразна архитектура.",
+    year: "2010",
+    title: "Къща",
+    sub: "Ормилия · Гърция",
+    cat: "Къща",
+    desc: "Самостоятелна къща за живеене с двор, изградена по индивидуален проект.",
     specs: [
-      { l: "РЗП", v: "1 800 м²" },
-      { l: "Апартаменти", v: "16" },
-      { l: "Год.", v: "2012" },
+      { l: "РЗП", v: "180 м²" },
+      { l: "ЗП", v: "100 м²" },
     ],
-    images: [
-      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=80",
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-    ],
+    images: HOUSE_04_IMAGES,
   },
   {
     id: 5,
     num: "05",
-    year: "2010",
-    title: "Историческа реновация",
-    sub: "Стар град · София",
-    cat: "Реновация",
-    desc: "Цялостна реновация на историческа сграда от XX век.",
-    specs: [
-      { l: "РЗП", v: "950 м²" },
-      { l: "Строена", v: "1920" },
-      { l: "Реновация", v: "2010" },
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
-    ],
-  },
-  {
-    id: 6,
-    num: "06",
-    year: "2008",
-    title: "Логистичен център",
-    sub: "Бизнес парк · София",
-    cat: "Промишлено",
-    desc: "Съвременен логистичен и дистрибуционен център с офис блок.",
-    specs: [
-      { l: "РЗП", v: "8 500 м²" },
-      { l: "Склад", v: "7 200 м²" },
-      { l: "Офиси", v: "1 300 м²" },
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
-      "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80",
-    ],
-  },
-  {
-    id: 7,
-    num: "07",
-    year: "2005",
-    title: "Бутиков хотел",
-    sub: "Боровец · Рила",
-    cat: "Хотелиерство",
-    desc: "Планински хотел с ресторант, СПА и конферентна зала.",
-    specs: [
-      { l: "РЗП", v: "2 200 м²" },
-      { l: "Стаи", v: "42" },
-      { l: "СПА", v: "400 м²" },
-    ],
-    images: [
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80",
-    ],
+    year: "2025",
+    title: "Апартамент",
+    sub: "София · България",
+    cat: "Основен ремонт и обзавеждане",
+    desc: "Апартамент в жилищна сграда",
+    specs: [{ l: "ЗП", v: "97 м²" }],
+    images: APARTMENT_05_IMAGES,
   },
 ];
 
@@ -2147,7 +2093,7 @@ function ProjectsSection({ isMobile }) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "0.8fr 1.2fr",
+              gridTemplateColumns: "minmax(0, 0.8fr) minmax(0, 1.2fr)",
               gap: "5rem",
               alignItems: "center",
             }}
@@ -2157,7 +2103,9 @@ function ProjectsSection({ isMobile }) {
               <div
                 key={`pi-${active}`}
                 style={{
-                  aspectRatio: "4/5",
+                  width: "100%",
+                  height: 0,
+                  paddingBottom: "125%",
                   backgroundImage: `url(${img})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
