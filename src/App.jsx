@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import logoSrc from "/src/assets/logo.png";
 import heroSrc from "/src/assets/hero.jpeg";
-import furnitureSrc from "/src/assets/furniture.png";
+import furnitureSrc from "/src/assets/furniture.jpg";
 import finishingSrc from "/src/assets/finishing_works.jpeg";
 import projectManagementSrc from "/src/assets/Project_management.jpeg";
 import logisticsSrc from "/src/assets/logistics.jpeg";
